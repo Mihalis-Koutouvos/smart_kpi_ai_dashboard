@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 
-export default function KPIs() {
-  const [kpis, setKpis] = useState([]);
+interface KPI {
+  id: number;
+  date: string;
+  revenue: number;
+  users: number;
+}
 
+export default function KPIs() {
+  const [kpis, setKpis] = useState<KPI[]>([]);
   useEffect(() => {
     api.get("/kpis").then((res) => {
       setKpis(res.data);
